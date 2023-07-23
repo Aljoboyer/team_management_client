@@ -1,0 +1,211 @@
+@import './Variables';
+
+@mixin PaddingRespnsive($device, $pt, $pr, $pb, $ps) {
+    @if ($device == 'small') {
+        @media only screen and (min-width:200px) and (max-width:567px) {
+            padding: $pt $pr $pb $ps;
+        }
+    }
+    @if ($device == 'medium') {
+        @media only screen and (min-width:568px) and (max-width: 767px) {
+            padding: $pt $pr $pb $ps;
+        }
+    }
+    @if ($device == 'large') {
+        @media only screen and (min-width:768px) and (max-width: 991px) {
+            padding: $pt $pr $pb $ps;
+        }
+    }
+    @if ($device == 'xlarge') {
+        @media only screen and (min-width:992px) and (max-width: 3000px) {
+            padding: $pt $pr $pb $ps;
+        }
+    }
+}
+
+@mixin WidthResponsive($device, $width) {
+    @if ($device == 'small') {
+        @media only screen and (min-width:200px) and (max-width:567px) {
+            width: $width;
+        }
+    }
+    @if ($device == 'medium') {
+        @media only screen and (min-width:568px) and (max-width: 767px) {
+            width: $width;
+        }
+    }
+    @if ($device == 'large') {
+        @media only screen and (min-width:768px) and (max-width: 991px) {
+            width: $width;
+        }
+    }
+    @if ($device == 'xlarge') {
+        @media only screen and (min-width:992px) and (max-width: 3000px) {
+            width: $width;
+        }
+    }
+}
+
+@mixin ButtonMixins($h, $w, $fs, $fw, $colors: $Hiligths, $text_color, $br) {
+    background-color: $colors;
+    display: block;
+    @include Texts($text_color, $fs, $Regular, $FamilyOne);
+    border-radius: $br;
+    height: $h;
+    width: $w;
+    // &:hover{
+    //     @include Texts($White, $fw, $Regular, $FamilyOne);
+    // }
+}
+
+@mixin FlexResponsive ($device, $display, $direction, $jc, $ai, $wrap: 'no-wrap') {
+    @if ($device == 'small') {
+        @media only screen and (min-width:200px) and (max-width:567px) {
+                display: $display;
+                flex-direction: $direction;
+                justify-content: $jc;
+                align-items: $ai;
+                flex-wrap: $wrap;
+        }
+    }
+    @if ($device == 'medium') {
+        @media only screen and (min-width:568px) and (max-width: 767px) {
+                display: $display;
+                flex-direction: $direction;
+                justify-content: $jc;
+                align-items: $ai;
+                flex-wrap: $wrap;
+        }
+    }
+    @if ($device == 'large') {
+        @media only screen and (min-width:768px) and (max-width: 991px) {
+                display: $display;
+                flex-direction: $direction;
+                justify-content: $jc;
+                align-items: $ai;
+                flex-wrap: $wrap;
+        }
+    }
+    @if ($device == 'xlarge') {
+        @media only screen and (min-width:992px) and (max-width: 3000px) {
+                display: $display;
+                flex-direction: $direction;
+                justify-content: $jc;
+                align-items: $ai;
+                flex-wrap: $wrap;
+        }
+    }
+}
+
+@mixin GridResponsive ($device, $display, $fr, $rp, $cgap, $rgap) {
+    @if ($device == 'small') {
+        @media only screen and (min-width:200px) and (max-width:567px) {
+                display: $display;
+                grid-template-columns: repeat($rp, $fr);
+                column-gap: $cgap;
+                row-gap: $rgap;
+        }
+    }
+    @if ($device == 'medium') {
+        @media only screen and (min-width:568px) and (max-width: 767px) {
+            display: $display;
+                grid-template-columns: repeat($rp, $fr);
+            column-gap: $cgap;
+            row-gap: $rgap;
+        }
+    }
+    @if ($device == 'large') {
+        @media only screen and (min-width:768px) and (max-width: 991px) {
+            display: $display;
+                grid-template-columns: repeat($rp, $fr);
+            column-gap: $cgap;
+            row-gap: $rgap;
+        }
+    }
+    @if ($device == 'xlarge') {
+        @media only screen and (min-width:992px) and (max-width: 3000px) {
+            display: $display;
+                grid-template-columns: repeat($rp, $fr);
+            column-gap: $cgap;
+            row-gap: $rgap;
+        }
+    }
+}
+
+@mixin Texts($colors, $fs, $fw, $ff) {
+    color: $colors;
+    font-size: $fs;
+    font-weight: $fw;
+    font-family: $ff;
+}
+
+
+@mixin InputFieldResponsive ($device, $bw, $bc, $br, $inw, $inh) {
+    @if ($device == 'small') {
+        @media only screen and (min-width:200px) and (max-width:567px) {
+            outline: none;
+            border: solid $bw $bc;
+            display: block;
+            border-radius: $br;
+            width: $inw;
+            height: $inh;
+            padding-left: 10px;
+        }
+    }
+    @if ($device == 'medium') {
+        @media only screen and (min-width:568px) and (max-width: 767px) {
+            outline: none;
+            border: solid $bw $bc;
+            display: block;
+            border-radius: $br;
+            width: $inw;
+            height: $inh;
+            padding-left: 10px;
+        }
+    }
+    @if ($device == 'large') {
+        @media only screen and (min-width:768px) and (max-width: 991px) {
+            outline: none;
+            border: solid $bw $bc;
+            display: block;
+            border-radius: $br;
+            width: $inw;
+            height: $inh;
+            padding-left: 10px;
+        }
+    }
+    @if ($device == 'xlarge') {
+        @media only screen and (min-width:992px) and (max-width: 3000px) {
+            outline: none;
+            border: solid $bw $bc;
+            display: block;
+            border-radius: $br;
+            width: $inw;
+            height: $inh;
+            padding-left: 10px;
+        }
+    }
+}
+
+@mixin FontsResponsive ($device, $size) {
+    @if ($device == 'small') {
+        @media only screen and (min-width:200px) and (max-width:567px) {
+                font-size: $size;
+        }
+    }
+    @if ($device == 'medium') {
+        @media only screen and (min-width:568px) and (max-width: 767px) {
+            font-size: $size;
+        }
+    }
+    @if ($device == 'large') {
+        @media only screen and (min-width:768px) and (max-width: 991px) {
+            font-size: $size;
+        }
+    }
+    @if ($device == 'xlarge') {
+        @media only screen and (min-width:992px) and (max-width: 3000px) {
+            font-size: $size;
+        }
+    }
+}

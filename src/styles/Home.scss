@@ -1,0 +1,50 @@
+@import './SharedMixins';
+@import './Variables';
+
+
+.home_header{
+    margin-top: 100px;
+    margin-bottom: 100px;
+    @include FlexResponsive('xlarge',flex, column, center, center);
+    @include FlexResponsive('large',flex, column, center, center);
+    @include FlexResponsive('medium',flex, column, center, center);
+    @include FlexResponsive('small',flex, column, center, center);
+    .header_title{
+        @include Texts(black, 50px, $Bold, $FamilyOne);
+        @include FontsResponsive('xlarge', 50px);
+        @include FontsResponsive('large',  40ox);
+        @include FontsResponsive('medium', 30px);
+        @include FontsResponsive('small',  20px);
+        text-align: center
+    }
+    p{
+        @include Texts(gray, 25px, $Medium, $FamilyOne);
+        @include FontsResponsive('medium', 18px);
+        @include FontsResponsive('small',  16px);
+        text-align: center
+    }
+    .button_div{
+        @include FlexResponsive('xlarge',flex, row, center, center);
+        @include FlexResponsive('large',flex, row, center, center);
+        @include FlexResponsive('medium',flex, row, center, center);
+        @include FlexResponsive('small',flex, column, center, center);
+        margin-top: 20px;
+        .auth_btn{
+            margin-right: 10px;
+            @include ButtonMixins(56px, 150px, 16px, $Regular, $Hiligths, white, 10px);
+            margin-top: 10px;
+        }
+        .login_btn{
+            margin-top: 20px;
+            @include ButtonMixins(72px, 326px, 16px, $Regular, $Hiligths, white, 10px);
+        }
+    }
+} 
+
+.footer_div{
+    @include  GridResponsive ('xlarge', grid, 1fr, 4, 10px, 10px);
+    @include  GridResponsive ('large', grid, 1fr, 3, 10px, 10px);
+    @include  GridResponsive ('medium', grid, 1fr, 2, 10px, 10px);
+    @include  GridResponsive ('small', grid, 1fr, 1, 10px, 10px);
+    padding: 20px;
+}

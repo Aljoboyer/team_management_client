@@ -1,0 +1,39 @@
+@import './SharedMixins';
+@import './Variables';
+
+.login_container{
+    height: 100vh;
+    width: 100%;
+    @include FlexResponsive('xlarge',flex, column, center, center);
+    @include FlexResponsive('large',flex, column, center, center);
+    @include FlexResponsive('medium',flex, column, center, center);
+    @include FlexResponsive('small',flex, column, center, center);
+    .welcome_div{
+        @include FlexResponsive('xlarge',flex, column, center, center);
+        @include FlexResponsive('large',flex, column, center, center);
+        @include FlexResponsive('medium',flex, column, center, center);
+        @include FlexResponsive('small',flex, column, center, center);
+
+    }
+    .login_title{
+        @include Texts(black, 50px, $Bold, $FamilyOne);
+        @include FontsResponsive('xlarge', 50px);
+        @include FontsResponsive('large',  40ox);
+        @include FontsResponsive('medium', 35px);
+        @include FontsResponsive('small',  30px);
+        text-align: center
+    }
+    .form_div{
+        padding: 20px;
+        .input_field{
+            @include InputFieldResponsive ('xlarge', 1px, $Hiligths, 10px, 326px, 56px);
+            @include InputFieldResponsive ('large', 1px, $Hiligths, 10px, 326px, 56px);
+            @include InputFieldResponsive ('medium', 1px, $Hiligths, 10px, 326px, 56px);
+            @include InputFieldResponsive ('small', 1px, $Hiligths, 10px, 326px, 56px);
+        }
+        .login_btn{
+            margin-top: 20px;
+            @include ButtonMixins(72px, 326px, 16px, $Regular, $Hiligths, white, 10px);
+        }
+    }
+}
