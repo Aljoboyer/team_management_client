@@ -44,7 +44,10 @@ export default function Navbars() {
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
               <div className="flex flex-shrink-0 items-center">
                 <img
-                  className="h-8 w-auto"
+                  onClick={() => {
+                    navigate('/')
+                  }}
+                  className="h-8 w-auto cursor-pointer"
                   src={Navicon}
                   alt="Your Company"
                 />
@@ -72,9 +75,10 @@ export default function Navbars() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   onClick={() => {
+                    navigate('/')
                     localStorage.clear();
                     window.location.reload()
-                    navigate('/')
+                    
                   }}
                     type="button"
                     className="rounded-full bg-yellow-500 p-1 px-4"

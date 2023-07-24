@@ -8,6 +8,11 @@ const authApi = api.injectEndpoints({
         method: 'POST',
         body: data,
       }),
+      invalidatesTags: ['getTeams'],
+    }),
+    getAllTeams: builder.query({
+      query: () => '/admin/v1/get-team',
+      providesTags: ['getTeams'],
     }),
 
   }),
@@ -15,4 +20,5 @@ const authApi = api.injectEndpoints({
 
 export const {
   useCreateTeamMutation,
+  useGetAllTeamsQuery,
 } = authApi;

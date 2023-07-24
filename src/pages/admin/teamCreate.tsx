@@ -1,16 +1,23 @@
 import  { useState } from 'react'
 import Swal from 'sweetalert2'
 import { useCreateTeamMutation } from '../../redux/features/adminApi';
+import { useGetUserQuery } from '../../redux/features/authApi';
 
 export default function TeamCreate() {
   const [createTeam, { }] = useCreateTeamMutation();
     const [teamObj, setTeamObj] = useState({})
-    const [errors, setErrors] = useState({
-        apiError: ''
-      })
+    const [errors, setErrors] = useState({ apiError: ''})
+    const jsonData: any = localStorage.getItem('token')
+    const token = jsonData ?  JSON.parse(jsonData) : 'jsdflkashhdlfkj'
+  
+    const { data } = useGetUserQuery(token, {
+      refetchOnMountOrArgChange: true,
+    });
+
     const teamCreateHandler = async () => {
-        const teamData: any = await createTeam(teamObj)
-        console.log('teamData ===>', teamData)
+      const postObj = {...teamObj, createdBy: data?.id}
+        const teamData: any = await createTeam(postObj)
+        console.log('teamData ===>', postObj)
         if(teamData?.data?.status == 200){
           Swal.fire(
             'Good job!',

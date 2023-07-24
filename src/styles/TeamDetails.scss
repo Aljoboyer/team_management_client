@@ -71,6 +71,7 @@
         margin-top: 30px;
         background-color: #F9F9F9;
         padding: 20px;
+        
     }
     .teams_card{
         box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
@@ -80,6 +81,8 @@
         @include FlexResponsive('small',flex, column, center, center);
         padding: 15px;
         border-radius: 10px;
+        cursor: pointer;
+      
         .img_info_div{
             @include FlexResponsive('xlarge',flex, row, center, center);
             @include FlexResponsive('large',flex, row, center, center);

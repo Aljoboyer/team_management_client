@@ -37,7 +37,7 @@ export default function Signup() {
          <div className="input_div">
           {/* <label className="label_text">Email</label> */}
           <input type="text" onChange={(e) => {
-                setUserObj({...userObj, userName: e.target.value})
+                setUserObj({...userObj, name: e.target.value})
           }} className="input_field" placeholder="Enter Name"/>
         </div>
         <div className="input_div mt-4">

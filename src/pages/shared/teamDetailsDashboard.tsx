@@ -11,7 +11,7 @@ export default function TeamDetailsDashboard() {
                 <h4 className="team_details_header_title">Little programmers</h4>
             </div>
             <div className="header_btn_div">
-                <button onClick={() => navigate('/teamCreate')} className="assign_btn">Assign a group</button>
+                <button  className="assign_btn">Assign a group</button>
                 <button className="add_btn">Add a members</button>
             </div>
         </div>
