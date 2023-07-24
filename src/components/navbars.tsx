@@ -6,7 +6,7 @@ import { useGetUserQuery } from '../redux/features/authApi'
 import { useNavigate } from 'react-router-dom'
 
 const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
+    { name: 'Dashboard', href: '/teamDetailsDashboard', current: true },
     { name: 'Availability', href: '/', current: false },
     { name: 'Integration', href: '#', current: false },
     { name: 'Community', href: '#', current: false },
@@ -25,7 +25,7 @@ export default function Navbars() {
   });
 
   return (
-    <Disclosure as="nav" className="bg-white">
+    <Disclosure as="nav" className="bg-[#FFF9F9]">
     {({ open }) => (
       <>
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -54,10 +54,10 @@ export default function Navbars() {
                   {navigation.map((item) => (
                     <p
                     onClick={() => {
-                      navigate(`/${item?.href}`)
+                      navigate(`${item?.href}`)
                     }}
                       key={item.name}
-                      className='text-[#283163] rounded-md px-3 py-2 text-sm font-medium'
+                      className='text-[#283163] rounded-md px-3 py-2 text-sm font-medium cursor-pointer'
                       // aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}

@@ -1,0 +1,11 @@
+@import './SharedMixins';
+@import './Variables';
+
+.create_team_container{
+    background-color: #e4e5fe;
+    width: 80%;
+    border-radius: 20px;
+    .label_text{
+        @include Texts(#AEB7B4, 24px, $Regular, $FamilyOne);
+    }
+}

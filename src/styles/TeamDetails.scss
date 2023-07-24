@@ -1,0 +1,69 @@
+@import './SharedMixins';
+@import './Variables';
+
+.team_details_container{
+    @include PaddingRespnsive('xlarge', 70px, 70px, 70px, 70px) ;
+    @include PaddingRespnsive('large', 50px, 50px, 50px, 50px) ;
+    @include PaddingRespnsive('medium', 20px, 20px, 20px, 20px) ;
+    @include PaddingRespnsive('small', 0px, 0px, 0px, 0px) ;
+
+    .team_details_header_text{
+        @include Texts(black, 24px, $Regular, $FamilyOne);
+        @include FontsResponsive('medium', 22px);
+        @include FontsResponsive('small',  18px);
+    }
+    .team_details_header_title{
+        @include Texts(black, 32px, $Heading, $FamilyOne);
+        @include FontsResponsive('xlarge', 32px);
+        @include FontsResponsive('large',  32ox);
+        @include FontsResponsive('medium', 28px);
+        @include FontsResponsive('small',  24px);
+    }
+    .team_details_header{
+        @include FlexResponsive('xlarge',flex, row, space-between, '');
+        @include FlexResponsive('large',flex, row, space-between, '');
+        @include FlexResponsive('medium',flex, column, center, '');
+        @include FlexResponsive('small',flex, column, center, '');
+        .header_btn_div{
+            @include FlexResponsive('xlarge',flex, row, center, center);
+            @include FlexResponsive('large',flex, row, center, center);
+            @include FlexResponsive('medium',flex, column, center, center);
+            @include FlexResponsive('small',flex, column, center, center);
+            .assign_btn{
+                margin-top: 5px;
+                margin-right: 10px;
+                @include ButtonMixins(71px, 184px, 20px, 500, white, $Hiligths, 10px);
+                border: solid 1px #4C54F8;
+            }
+            .add_btn{
+                margin-top: 5px;
+                @include ButtonMixins(71px, 174px, 20px, 500, $Hiligths, white, 10px);
+              
+            }
+        }
+    }
+    .status_btn_div{
+        margin-top: 40px;
+        @include FlexResponsive('xlarge',flex, row, flex-start, center);
+        @include FlexResponsive('large',flex, row, flex-start, center);
+        @include FlexResponsive('medium',flex, column, center, center);
+        @include FlexResponsive('small',flex, column, center, center);
+        .active_btn{
+            margin-top: 5px;
+            margin-right: 10px;
+            @include ButtonMixins(60px, 184px, 20px, 500, white, $Hiligths, 10px);
+            border: solid 1px #4C54F8;
+            font-weight: bold;
+        }
+        .pending_btn{
+            margin-top: 5px;
+            @include ButtonMixins(60px, 184px, 20px, 500, white, $NonHiligthsTwo, 10px);
+            border: solid 1px #AEB7B4;
+        }
+    }
+    .details_table{
+        border: solid 1px #9ED2C3;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+}

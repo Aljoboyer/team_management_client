@@ -4,11 +4,17 @@ import Notfound from './pages/notfound/notfound';
 import Login from './pages/auth/login';
 import Home from './pages/shared/home';
 import RootLayout from './components/rootLayout'
+import Signup from './pages/auth/signup';
+import TeamDetailsDashboard from './pages/shared/teamDetailsDashboard';
+import TeamCreate from './pages/admin/teamCreate';
 
 //SASS
 import './styles/Home.css'
 import './styles/Login.css'
-import Signup from './pages/auth/signup';
+import './styles/TeamDetails.css'
+import './styles/createTeam.css'
+import 'sweetalert2/src/sweetalert2.scss'
+
 
 function App() {
 
@@ -20,6 +26,8 @@ function App() {
           <Route path="/" element={<RootLayout><Home /></RootLayout>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/teamDetailsDashboard" element={<RootLayout><TeamDetailsDashboard /></RootLayout>} />
+          <Route path="/teamCreate" element={<RootLayout><TeamCreate /></RootLayout>} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         

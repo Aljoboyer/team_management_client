@@ -1,4 +1,3 @@
-import React from 'react'
 import AppIcon from '../../assets/app_icon.png';
 import { useNavigate } from 'react-router-dom';
 import { useGetUserQuery } from '../../redux/features/authApi';
