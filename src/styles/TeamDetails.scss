@@ -66,4 +66,59 @@
         border-radius: 10px;
         margin-top: 30px;
     }
+    .teams_div{
+        border-radius: 10px;
+        margin-top: 30px;
+        background-color: #F9F9F9;
+        padding: 20px;
+    }
+    .teams_card{
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+        @include FlexResponsive('xlarge',flex, row, space-between, center);
+        @include FlexResponsive('large',flex, row, space-between, center);
+        @include FlexResponsive('medium',flex, column, center, center);
+        @include FlexResponsive('small',flex, column, center, center);
+        padding: 15px;
+        border-radius: 10px;
+        .img_info_div{
+            @include FlexResponsive('xlarge',flex, row, center, center);
+            @include FlexResponsive('large',flex, row, center, center);
+            @include FlexResponsive('medium',flex, column, center, center);
+            @include FlexResponsive('small',flex, column, center, center);  
+        }
+        .team_name{
+            @include Texts(black, 24px, $Bold, $FamilyOne);
+        }
+        .user_name2{
+            @include Texts(black, 16px, $Heading, $FamilyOne);
+        }
+        .user_name{
+            text-decoration: underline;
+        }
+        .role_text{
+            @include Texts(black, 20px, $Heading, $FamilyOne);
+        }
+        .empty_div{
+            background-color: black;
+            height: 40px;
+            width: 2px;
+        }
+        .action_btn_div{
+            @include FlexResponsive('xlarge',flex, row, center, center);
+            @include FlexResponsive('large',flex, row, center, center);
+            @include FlexResponsive('medium',flex, column, center, center);
+            @include FlexResponsive('small',flex, column, center, center);
+            .reject{
+                margin-right: 10px;
+                @include ButtonMixins(40px, 90px, 18px, 700, #E2E2E2, #101010, 10px);
+            }
+            .accept{
+                @include ButtonMixins(40px, 90px, 18px, 700, $Hiligths, white, 10px);
+            }
+        }
+
+    }
+    .exists_text{
+        @include Texts(rgba(0, 0, 0, 0.308)20, 24px, $Medium, $FamilyOne);
+    }
 }

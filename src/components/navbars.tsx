@@ -6,7 +6,7 @@ import { useGetUserQuery } from '../redux/features/authApi'
 import { useNavigate } from 'react-router-dom'
 
 const navigation = [
-    { name: 'Dashboard', href: '/teamDetailsDashboard', current: true },
+    { name: 'Dashboard', href: '/teamsDashboard', current: true },
     { name: 'Availability', href: '/', current: false },
     { name: 'Integration', href: '#', current: false },
     { name: 'Community', href: '#', current: false },

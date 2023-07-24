@@ -14,6 +14,7 @@ import './styles/Login.css'
 import './styles/TeamDetails.css'
 import './styles/createTeam.css'
 import 'sweetalert2/src/sweetalert2.scss'
+import TeamsDashboard from './pages/shared/teamsDashboard';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/teamDetailsDashboard" element={<RootLayout><TeamDetailsDashboard /></RootLayout>} />
           <Route path="/teamCreate" element={<RootLayout><TeamCreate /></RootLayout>} />
+          <Route path="/teamsDashboard" element={<RootLayout><TeamsDashboard /></RootLayout>} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         
