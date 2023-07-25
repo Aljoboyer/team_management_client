@@ -36,7 +36,7 @@ export default function AddMember() {
         const newItem = {
           email: item?.email,
           name: item?.name,
-          teamId: params?.id,
+          teamDetails: params?.id,
           teamUserTitle: "",
           teamRole: "",
           status: "Pending",
