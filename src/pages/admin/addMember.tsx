@@ -120,8 +120,9 @@ export default function AddMember() {
                   selectArr?.map((item: any) => (
                     <tr className="bg-white add_Team_row">
                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {item?.name}
-                        {item?.email}
+                       <span className="block text-xl"> {item?.name}</span>
+                       <span className="block text-sm"> {item?.email}</span>
+                        
                     </th>
                     <td className="px-6 py-4">
                         <input className="ps-2" onChange={(e) => OnChangeHandler(e, item)} name="teamUserTitle" placeholder="write title" />

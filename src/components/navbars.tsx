@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Navicon from '../assets/navIcon.png'
@@ -6,7 +5,7 @@ import { useGetUserQuery } from '../redux/features/authApi'
 import { useNavigate } from 'react-router-dom'
 
 const navigation = [
-    { name: 'Dashboard', href: '/teamsDashboard', current: true },
+    // { name: 'Dashboard', href: '/teamsDashboard', current: true },
     { name: 'Availability', href: '/', current: false },
     { name: 'Integration', href: '#', current: false },
     { name: 'Community', href: '#', current: false },
@@ -24,6 +23,20 @@ export default function Navbars() {
     refetchOnMountOrArgChange: true,
   });
 
+  const logOutHandler = () => {
+    if(data?.role == 'admin'){
+      navigate('/adminView')
+      localStorage.clear();
+      window.location.reload()
+    }else{
+      navigate('/userView')
+      localStorage.clear();
+      window.location.reload()
+    }
+  }
+  const homeNavigation = () => {
+
+  }
   return (
     <Disclosure as="nav" className="bg-[#FFF9F9]">
     {({ open }) => (
@@ -45,7 +58,7 @@ export default function Navbars() {
               <div className="flex flex-shrink-0 items-center">
                 <img
                   onClick={() => {
-                    navigate('/')
+                    navigate('/teamsDashboard')
                   }}
                   className="h-8 w-auto cursor-pointer"
                   src={Navicon}
@@ -75,10 +88,7 @@ export default function Navbars() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   onClick={() => {
-                    navigate('/')
-                    localStorage.clear();
-                    window.location.reload()
-                    
+                    logOutHandler()
                   }}
                     type="button"
                     className="rounded-full bg-yellow-500 p-1 px-4"

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import TeamBlack from '../../assets/teamBlack.png'
 import { useGetAllTeamsQuery } from "../../redux/features/adminApi";
+import { useGetUserQuery } from "../../redux/features/authApi";
 
 export default function TeamsDashboard() {
     const jsonData: any = localStorage.getItem('token')
@@ -9,24 +10,29 @@ export default function TeamsDashboard() {
     const { data } = useGetAllTeamsQuery(token, {
         refetchOnMountOrArgChange: true,
       });
- 
+      const { data: userData } = useGetUserQuery(token, {
+        refetchOnMountOrArgChange: true,
+      });
     const navigate = useNavigate();
- 
+ console.log(userData)
   return (
     <div className="team_details_container">
     <div className="team_details_header">
         <div>
-            <p className="team_details_header_text">Admin Dashboard</p>
-            <h4 className="team_details_header_title">Team Creation management system</h4>
+            <p className="team_details_header_text">{userData?.role == 'admin' ? 'Admin Dashboard' : userData?.role == 'user' ? `Hi ${userData?.name} !` : ''}</p>
+            <h4 className="team_details_header_title">{userData?.role == 'admin' ? 'Team Creation management system' :  userData?.role == 'user' ?  'Your Team Invitation List' : ''}</h4>
         </div>
 
     </div>
-    <div className="status_btn_div">
+    
+    {
+        userData?.role == 'admin' &&    <div className="status_btn_div">
         <button onClick={() => navigate('/teamCreate')} className="active_btn">+  Create a team   </button>
     </div>
+    }
     
     <div className="relative overflow-x-auto teams_div">
-        <h4 className="exists_text my-4">Existing Team</h4>
+       {userData?.role == 'admin' &&  <h4 className="exists_text my-4">Existing Team</h4>}
         
         {
             data?.map((item: any) => (

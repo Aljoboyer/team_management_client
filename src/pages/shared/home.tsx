@@ -1,15 +1,17 @@
 import AppIcon from '../../assets/app_icon.png';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetUserQuery } from '../../redux/features/authApi';
 
 export default function Home() {
   const navigate = useNavigate();
   const jsonData: any = localStorage.getItem('token')
   const token = jsonData ?  JSON.parse(jsonData) : 'jsdflkashhdlfkj'
+  const location = useLocation();
 
   const { data } = useGetUserQuery(token, {
     refetchOnMountOrArgChange: true,
   });
+
 
   return (
     <div className='home_header'>
@@ -24,7 +26,9 @@ export default function Home() {
               <button onClick={() => navigate('/')} className='login_btn'>Continue</button>
           </div> : <div className='button_div'> 
               <button onClick={() => navigate('/login')} className='auth_btn'>Login</button>
-              <button onClick={() => navigate('/signup')}  className='auth_btn'>Sign Up</button>
+              <button onClick={() => {
+                navigate('/signup',{ state: location?.pathname == '/adminView' ? 'admin' : 'user' })
+              }}  className='auth_btn'>Sign Up</button>
           </div> 
             }
 
