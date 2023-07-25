@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { useGetAllUserQuery } from "../../redux/features/adminApi";
+import { useInviteToTeamMutation, useGetAllUserQuery } from "../../redux/features/adminApi";
 import DP from '../../assets/dp.png'
 import { useParams } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export default function AddMember() {
   const { data } = useGetAllUserQuery(undefined);
+  const [inviteToTeam, { }] = useInviteToTeamMutation();
   const [searchResult, setSearchResult] = useState([])
   const [selectArr, setSelectArr]: any = useState([])
   const params = useParams();
-
+  
   const SearchHandler = (searchText: string) => {
     if (searchText?.length >= 2) {
 
@@ -28,8 +30,8 @@ export default function AddMember() {
   }
   
   const selectHandler = (item: any) => {
-      const findItem: any = selectArr?.find((user: any) => user?._id == item?._id)
-      if(findItem?._id){
+      const findItem: any = selectArr?.find((user: any) => user?.email == item?.email)
+      if(findItem?.email){
         return
       }
       else{
@@ -63,8 +65,18 @@ export default function AddMember() {
     })
   }
 
-  const inviteHandler = () => {
+  const inviteHandler = async () => {
     console.log('selected Arr', selectArr)
+    const data: any = await inviteToTeam(selectArr)
+    if(data?.data?.status == 200){
+      setSelectArr([])
+      setSearchResult([])
+      Swal.fire(
+        'Good job!',
+        'Invitation Send Successfully',
+        'success'
+      )
+    }
   }
 
   return (
@@ -125,15 +137,15 @@ export default function AddMember() {
                         
                     </th>
                     <td className="px-6 py-4">
-                        <input className="ps-2" onChange={(e) => OnChangeHandler(e, item)} name="teamUserTitle" placeholder="write title" />
+                        <input  className="ps-2 text-black" onChange={(e) => OnChangeHandler(e, item)} name="teamUserTitle" placeholder="write title" />
                     </td>
                     <td className="px-6 py-4">
-                      <input onChange={(e) => OnChangeHandler(e, item)} name="expireToTime" type="time" />
+                      <input  onChange={(e) => OnChangeHandler(e, item)} name="expireToTime" type="time" />
                       <span className="mx-2">To</span>
                       <input onChange={(e) => OnChangeHandler(e, item)} name="expireFromTime" type="time" />
                     </td>
                     <td className="px-6 py-4">
-                        <input className="mr-2 ps-2" onChange={(e) => OnChangeHandler(e, item)} name="teamRole"  placeholder="Enter role" />
+                        <input className="mr-2 ps-2 text-black" onChange={(e) => OnChangeHandler(e, item)} name="teamRole"  placeholder="Enter role" />
                         <span className="cursor-pointer" onClick={() => RemoveHandler(item)}>X</span>
                     </td>
                 </tr>
