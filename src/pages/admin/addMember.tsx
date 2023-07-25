@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useGetAllUserQuery } from "../../redux/features/adminApi";
 import DP from '../../assets/dp.png'
+import { useParams } from "react-router-dom";
 
 export default function AddMember() {
   const { data } = useGetAllUserQuery(undefined);
   const [searchResult, setSearchResult] = useState([])
   const [selectArr, setSelectArr]: any = useState([])
+  const params = useParams();
 
   const SearchHandler = (searchText: string) => {
     if (searchText?.length >= 2) {
@@ -31,7 +33,17 @@ export default function AddMember() {
         return
       }
       else{
-        setSelectArr([...selectArr, item])
+        const newItem = {
+          email: item?.email,
+          name: item?.name,
+          teamId: params?.id,
+          teamUserTitle: "",
+          teamRole: "",
+          status: "Pending",
+          expireToTime: "",
+          expireFromTime: ""
+        }
+        setSelectArr([...selectArr, newItem])
       }
   }
 
@@ -50,7 +62,11 @@ export default function AddMember() {
       return selectArr;
     })
   }
-  console.log('selected Arr', selectArr)
+
+  const inviteHandler = () => {
+    console.log('selected Arr', selectArr)
+  }
+
   return (
     <div className='addMembder_container'>
         <div className="ms-12">
@@ -79,47 +95,52 @@ export default function AddMember() {
         </div>
 
         <div className="relative overflow-x-auto details_table mt-12">
-    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" className="px-6 py-3 font-bold">
-                    Name
-                </th>
-                <th scope="col" className="px-6 py-3 font-bold">
-                    Title
-                </th>
-                <th scope="col" className="px-6 py-3 font-bold">
-                    Active Hours
-                </th>
-                <th scope="col" className="px-6 py-3 font-bold">
-                   Role
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-           {
-            selectArr?.map((item: any) => (
-              <tr className="bg-white add_Team_row">
-              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  {item?.name}
-                  {item?.email}
-              </th>
-              <td className="px-6 py-4">
-                  <input onChange={(e) => OnChangeHandler(e, item)} name="user_title" placeholder="write title" />
-              </td>
-              <td className="px-6 py-4">
-                05:00 - 09:00 PM (BD)
-              </td>
-              <td className="px-6 py-4">
-                  <input onChange={(e) => OnChangeHandler(e, item)} name="team_role"  placeholder="Enter role" />
-                  <span className="cursor-pointer" onClick={() => RemoveHandler(item)}>X</span>
-              </td>
-          </tr>
-            ))
-           }
-        </tbody>
-    </table>
-</div>
+         <div className="flex flex-row justify-end ">
+              <button onClick={() => inviteHandler()} className="py-2 px-4 bg-[#3267B1] text-white font-bold rounded">Invite Selected Member</button>
+         </div>
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                  <tr>
+                      <th scope="col" className="px-6 py-3 font-bold">
+                          Name
+                      </th>
+                      <th scope="col" className="px-6 py-3 font-bold">
+                          Title
+                      </th>
+                      <th scope="col" className="px-6 py-3 font-bold">
+                          Active Hours
+                      </th>
+                      <th scope="col" className="px-6 py-3 font-bold">
+                        Role
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+                {
+                  selectArr?.map((item: any) => (
+                    <tr className="bg-white add_Team_row">
+                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {item?.name}
+                        {item?.email}
+                    </th>
+                    <td className="px-6 py-4">
+                        <input className="ps-2" onChange={(e) => OnChangeHandler(e, item)} name="teamUserTitle" placeholder="write title" />
+                    </td>
+                    <td className="px-6 py-4">
+                      <input onChange={(e) => OnChangeHandler(e, item)} name="expireToTime" type="time" />
+                      <span className="mx-2">To</span>
+                      <input onChange={(e) => OnChangeHandler(e, item)} name="expireFromTime" type="time" />
+                    </td>
+                    <td className="px-6 py-4">
+                        <input className="mr-2 ps-2" onChange={(e) => OnChangeHandler(e, item)} name="teamRole"  placeholder="Enter role" />
+                        <span className="cursor-pointer" onClick={() => RemoveHandler(item)}>X</span>
+                    </td>
+                </tr>
+                  ))
+                }
+              </tbody>
+          </table>
+        </div>
     </div>
   )
 }

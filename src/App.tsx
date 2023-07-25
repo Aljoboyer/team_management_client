@@ -35,7 +35,7 @@ function App() {
           <Route path="/teamDetailsDashboard/:id" element={<RootLayout><TeamDetailsDashboard /></RootLayout>} />
           <Route path="/teamCreate" element={<RootLayout><TeamCreate /></RootLayout>} />
           <Route path="/teamsDashboard" element={<RootLayout><TeamsDashboard /></RootLayout>} />
-          <Route path="/addMember" element={<RootLayout><AddMember /></RootLayout>} />
+          <Route path="/addMember/:id" element={<RootLayout><AddMember /></RootLayout>} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         
