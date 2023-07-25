@@ -1,0 +1,55 @@
+@import './SharedMixins';
+@import './Variables';
+
+.addMembder_container{
+    padding: 50px;
+    border: solid #3267B1 1px;
+    border-radius: 10px;
+    margin: 30px;
+    .addMember_title{
+        @include Texts(black, 32px, $Heading, $FamilyOne);
+        @include FontsResponsive('xlarge', 32px);
+        @include FontsResponsive('large',  32ox);
+        @include FontsResponsive('medium', 25px);
+        @include FontsResponsive('small',  20px);
+    }
+    .suggestion_text{
+        @include Texts(#202020, 24px, $Regular, $FamilyOne);
+        @include FontsResponsive('xlarge', 24px);
+        @include FontsResponsive('large',  24ox);
+        @include FontsResponsive('medium', 20px);
+        @include FontsResponsive('small',  16px);
+    }
+    .search_field_div{
+        @include FlexResponsive('xlarge',flex, row, center, center);
+        @include FlexResponsive('large',flex, row, space-between, center);
+        @include FlexResponsive('medium',flex, column, center, center);
+        @include FlexResponsive('small',flex, column, center, center);
+        margin-top: 30px;
+        .input_div{
+            margin-right: 20px;
+            border: solid #3267B1 1px;
+            width: 864px;
+            border-radius: 10px;
+            @include FlexResponsive('xlarge',flex, row, flex-start, center, wrap);
+            @include FlexResponsive('large',flex, row,flex-start, center, wrap);
+            @include FlexResponsive('medium',flex, column, flex-start, center, wrap);
+            @include FlexResponsive('small',flex, column, flex-start, center, wrap);
+            .search_input{
+                @include InputFieldResponsive ('xlarge', 1px, white, 10px, 264px, 68px);
+                @include InputFieldResponsive ('large', 1px, white, 10px, 364px, 68px);
+                @include InputFieldResponsive ('medium', 1px, white, 10px, 364px, 50px);
+                @include InputFieldResponsive ('small', 1px, white, 10px, 326px, 50px);
+                outline: none;
+            }
+        }
+        .add_btn{
+            @include ButtonMixins(65px, 130px, 16px, $Heading, #3267b174, #3267B1, 10px);
+        }
+    }
+    .add_Team_row{
+        border: solid #3267b187 1px;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+}

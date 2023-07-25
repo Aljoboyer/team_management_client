@@ -3,12 +3,15 @@ import TeamBlack from '../../assets/teamBlack.png'
 import { useGetAllTeamsQuery } from "../../redux/features/adminApi";
 
 export default function TeamsDashboard() {
-    const { data } = useGetAllTeamsQuery({
+    const jsonData: any = localStorage.getItem('token')
+    const token =  JSON.parse(jsonData)
+
+    const { data } = useGetAllTeamsQuery(token, {
         refetchOnMountOrArgChange: true,
       });
-
+ 
     const navigate = useNavigate();
-    console.log(data)
+ 
   return (
     <div className="team_details_container">
     <div className="team_details_header">
@@ -27,7 +30,9 @@ export default function TeamsDashboard() {
         
         {
             data?.map((item: any) => (
-                <div className="teams_card mt-4">
+                <div onClick={() => {
+                    navigate(`/teamDetailsDashboard/${item?._id}`)
+                }} className="teams_card mt-4">
                 <div className="img_info_div">
                     <img src={TeamBlack} />
                     <div className="mx-2">

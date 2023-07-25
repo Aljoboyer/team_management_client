@@ -7,14 +7,19 @@ import RootLayout from './components/rootLayout'
 import Signup from './pages/auth/signup';
 import TeamDetailsDashboard from './pages/shared/teamDetailsDashboard';
 import TeamCreate from './pages/admin/teamCreate';
+import TeamsDashboard from './pages/shared/teamsDashboard';
 
 //SASS
 import './styles/Home.css'
 import './styles/Login.css'
 import './styles/TeamDetails.css'
 import './styles/createTeam.css'
+import './styles/Addmember.css'
+
+//sweet alert
 import 'sweetalert2/src/sweetalert2.scss'
-import TeamsDashboard from './pages/shared/teamsDashboard';
+import AddMember from './pages/admin/addMember';
+
 
 
 function App() {
@@ -27,9 +32,10 @@ function App() {
           <Route path="/" element={<RootLayout><Home /></RootLayout>} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/teamDetailsDashboard" element={<RootLayout><TeamDetailsDashboard /></RootLayout>} />
+          <Route path="/teamDetailsDashboard/:id" element={<RootLayout><TeamDetailsDashboard /></RootLayout>} />
           <Route path="/teamCreate" element={<RootLayout><TeamCreate /></RootLayout>} />
           <Route path="/teamsDashboard" element={<RootLayout><TeamsDashboard /></RootLayout>} />
+          <Route path="/addMember" element={<RootLayout><AddMember /></RootLayout>} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         

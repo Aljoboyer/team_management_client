@@ -10,16 +10,18 @@ export default function Login() {
     const navigate = useNavigate();
     const [errors, setErrors] = useState({
       apiError: ''
-    })
+    });
+    const [loader, setLoader] = useState(false)
     const loginHandler = async () => {
-
+      setLoader(true)
       const data: any = await login(userObj)
       console.log('this is data', data)
       if(data?.data?.result?.email){
         localStorage.setItem('token', JSON.stringify(data?.data?.token))
        setTimeout(() => {
+        setLoader(false)
         navigate('/')
-       },1000)
+       },2000)
       }
       else{
         setErrors({...errors, apiError: data?.error?.data?.message})
@@ -47,7 +49,10 @@ export default function Login() {
               </div>
               <p className='text-red-500'>{errors?.apiError}</p>
               <p className='text-gray-600 mt-4'>Don’t have an account? <span onClick={() => navigate('/signup')} className='text-gray-300 hover:text-blue-500 cursor-pointer'>Sign up</span></p>
-              <button  onClick={() => loginHandler()} className="login_btn">Continue</button>
+              {
+                loader ?  <button className="login_btn">Loading...</button> :  <button  onClick={() => loginHandler()} className="login_btn">Continue</button>
+              }
+             
           </div>
     </div>
   )

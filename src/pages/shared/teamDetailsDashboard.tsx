@@ -1,8 +1,10 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 
 export default function TeamDetailsDashboard() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const params = useParams();
+    
   return (
     <div className="team_details_container">
         <div className="team_details_header">
@@ -12,7 +14,7 @@ export default function TeamDetailsDashboard() {
             </div>
             <div className="header_btn_div">
                 <button  className="assign_btn">Assign a group</button>
-                <button className="add_btn">Add a members</button>
+                <button onClick={() => navigate('/addMember')} className="add_btn">Add a members</button>
             </div>
         </div>
         <div className="status_btn_div">
