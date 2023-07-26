@@ -51,6 +51,8 @@ export default function Navbars() {
        setInvitationData(filterData)
     }
 }, [data, data?.role, data?.length]);
+
+console.log(invitationData)
   return (
     <Disclosure as="nav" className="bg-[#FFF9F9]">
     {({ open }) => (
@@ -111,6 +113,9 @@ export default function Navbars() {
                   </button>
                  {
                   data?.role == 'user' &&  <button
+                  onClick={() => {
+                    navigate('/InvitationView')
+                  }}
                     type="button"
                     className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-bg-gray-800 border border-black mx-2"
                   >

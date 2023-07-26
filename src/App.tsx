@@ -19,6 +19,7 @@ import './styles/Addmember.css'
 //sweet alert
 import 'sweetalert2/src/sweetalert2.scss'
 import AddMember from './pages/admin/addMember';
+import InvitationView from './pages/user/invitationView';
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/teamCreate" element={<RootLayout><TeamCreate /></RootLayout>} />
           <Route path="/teamsDashboard" element={<RootLayout><TeamsDashboard /></RootLayout>} />
           <Route path="/addMember/:id" element={<RootLayout><AddMember /></RootLayout>} />
+          <Route path="/InvitationView" element={<RootLayout><InvitationView /></RootLayout>} />
           <Route path="*" element={<Notfound />} />
         </Routes>
         
