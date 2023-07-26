@@ -60,12 +60,13 @@
 }
 .addMembder_container .search_field_div {
   margin-top: 30px;
+  margin-left: 50px;
 }
 @media only screen and (min-width: 992px) and (max-width: 3000px) {
   .addMembder_container .search_field_div {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: "no-wrap";
   }
@@ -148,7 +149,7 @@
     border: solid 1px white;
     display: block;
     border-radius: 10px;
-    width: 264px;
+    width: 564px;
     height: 68px;
     padding-left: 10px;
   }

@@ -1,6 +1,6 @@
 import  { useState } from 'react'
 import { useSignUpMutation } from '../../redux/features/authApi';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import AppIcon from '../../assets/app_icon.png'
 
 export default function Signup() {
@@ -8,7 +8,6 @@ export default function Signup() {
     const [signUp, { isLoading, isError, isSuccess }] = useSignUpMutation();
     console.log( isLoading, isError, isSuccess)
     const [userObj, setUserObj] : any= useState({});
-    const location = useLocation();
     const [loader, setLoader] = useState(false)
 
     const navigate = useNavigate();
@@ -16,11 +15,12 @@ export default function Signup() {
       apiError: '',
       emailErr: '',
       passwordErr: '',
-      nameErr: ''
+      nameErr: '',
+      roleErr: ''
     })
 
     const signUpHandler = async () => {
-      const postUserObj = {...userObj, role: location?.state, profileImg: ''}
+      const postUserObj = {...userObj,  profileImg: ''}
       if (emailRegex.test(userObj?.email) === false || !userObj?.email) {
         setErrors({...errors, emailErr: 'Please Enter a valid email'})
         return
@@ -33,9 +33,13 @@ export default function Signup() {
         setErrors({...errors, passwordErr: 'Please Enter password'})
         return
       }
+      if (!userObj?.role) {
+        setErrors({...errors, roleErr: 'Please select account role'})
+        return
+      }
       setLoader(true)
       const data: any = await signUp(postUserObj)
-      console.log('this is data', data?.data)
+      console.log('this is data', postUserObj)
       if(data?.data?.result?.email){
         localStorage.setItem('token', JSON.stringify(data?.data?.token))
        setTimeout(() => {
@@ -64,6 +68,19 @@ export default function Signup() {
           }} className="input_field" placeholder="Enter Name"/>
             <p className='text-red-500 mt-4'>{errors?.nameErr}</p>
         </div>
+
+        <div className="input_div mt-4">
+          <select name='role' onChange={(e) => {
+            setUserObj({...userObj, role: e.target.value})
+            setErrors({...errors, roleErr: ''})
+          }} className="input_field">
+            <option value="admin">Select Account Role</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+         </select>
+            <p className='text-red-500 mt-4'>{errors?.roleErr}</p>
+        </div>
+
         <div className="input_div mt-4">
           {/* <label className="label_text">Email</label> */}
           <input type="email" onChange={(e) => {
@@ -81,7 +98,7 @@ export default function Signup() {
             <p className='text-red-500 mt-4'>{errors?.passwordErr}</p>
         </div>
         <p className='text-red-500 mt-4'>{errors?.apiError}</p>
-              <p className='text-gray-600 mt-4'>Already have an account? <span onClick={() => navigate('/login', {state: location?.state})} className='text-gray-300 hover:text-blue-500 cursor-pointer'>Login</span></p>
+              <p className='text-gray-600 mt-4'>Already have an account? <span onClick={() => navigate('/login')} className='text-gray-300 hover:text-blue-500 cursor-pointer'>Login</span></p>
               {
                 loader ?  <button className="login_btn">Loading...</button> :  <button  onClick={() => signUpHandler()} className="login_btn">Sign Up</button>
               }

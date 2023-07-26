@@ -29,7 +29,6 @@ function App() {
 
         <Routes>
           <Route path="/" element={<RootLayout><Home /></RootLayout>} />
-          {/* <Route path="/userView" element={<RootLayout><Home /></RootLayout>} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/teamDetailsDashboard/:id" element={<RootLayout><TeamDetailsDashboard /></RootLayout>} />

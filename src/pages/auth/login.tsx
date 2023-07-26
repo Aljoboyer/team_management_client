@@ -1,5 +1,5 @@
 import  { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../redux/features/authApi';
 import AppIcon from '../../assets/app_icon.png';
 
@@ -9,7 +9,6 @@ export default function Login() {
     console.log( isLoading, isError, isSuccess)
     const [userObj, setUserObj] : any= useState({})
     const navigate = useNavigate();
-    const location = useLocation();
 
     const [errors, setErrors] = useState({
       apiError: '',
@@ -69,7 +68,7 @@ export default function Login() {
                  <p className='text-red-500'>{errors?.passwordErr}</p>
               </div>
               <p className='text-red-500'>{errors?.apiError}</p>
-              <p className='text-gray-600 mt-4'>Don’t have an account? <span onClick={() => navigate('/signup', { state: location?.state })} className='text-gray-300 hover:text-blue-500 cursor-pointer'>Sign up</span></p>
+              <p className='text-gray-600 mt-4'>Don’t have an account? <span onClick={() => navigate('/signup')} className='text-gray-300 hover:text-blue-500 cursor-pointer'>Sign up</span></p>
               {
                 loader ?  <button className="login_btn">Loading...</button> :  <button  onClick={() => loginHandler()} className="login_btn">Continue</button>
               }

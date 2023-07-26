@@ -29,17 +29,7 @@ export default function Navbars() {
     refetchOnMountOrArgChange: true,
   });
 
-  const logOutHandler = () => {
-    if(data?.role == 'admin'){
-      navigate('/adminView')
-      localStorage.clear();
-      window.location.reload()
-    }else{
-      navigate('/userView')
-      localStorage.clear();
-      window.location.reload()
-    }
-  }
+ 
 
   useEffect(() => {
     if(data?.role == 'user' && allTeam && allTeam?.length > 0){
@@ -49,7 +39,7 @@ export default function Navbars() {
     }
 }, [data, data?.role, data?.length]);
 
-console.log(invitationData)
+
   return (
     <Disclosure as="nav" className="bg-[#FFF9F9]">
     {({ open }) => (
@@ -101,7 +91,9 @@ console.log(invitationData)
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   onClick={() => {
-                    logOutHandler()
+                    navigate('/')
+                    localStorage.clear();
+                    window.location.reload()
                   }}
                     type="button"
                     className="rounded-full bg-yellow-500 p-1 px-4"

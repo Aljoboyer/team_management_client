@@ -21,11 +21,12 @@
         @include FontsResponsive('small',  16px);
     }
     .search_field_div{
-        @include FlexResponsive('xlarge',flex, row, center, center);
+        @include FlexResponsive('xlarge',flex, row, flex-start, center);
         @include FlexResponsive('large',flex, row, space-between, center);
         @include FlexResponsive('medium',flex, column, center, center);
         @include FlexResponsive('small',flex, column, center, center);
         margin-top: 30px;
+        margin-left: 50px;
         .input_div{
             margin-right: 20px;
             border: solid #3267B1 1px;
@@ -36,7 +37,7 @@
             @include FlexResponsive('medium',flex, column, flex-start, center, wrap);
             @include FlexResponsive('small',flex, column, flex-start, center, wrap);
             .search_input{
-                @include InputFieldResponsive ('xlarge', 1px, white, 10px, 264px, 68px);
+                @include InputFieldResponsive ('xlarge', 1px, white, 10px, 564px, 68px);
                 @include InputFieldResponsive ('large', 1px, white, 10px, 364px, 68px);
                 @include InputFieldResponsive ('medium', 1px, white, 10px, 364px, 50px);
                 @include InputFieldResponsive ('small', 1px, white, 10px, 326px, 50px);

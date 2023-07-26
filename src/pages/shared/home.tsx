@@ -6,7 +6,6 @@ export default function Home() {
   const navigate = useNavigate();
   const jsonData: any = localStorage.getItem('token')
   const token = jsonData ?  JSON.parse(jsonData) : 'jsdflkashhdlfkj'
-  // const location = useLocation();
   
   const { data } = useGetUserQuery(token, {
     refetchOnMountOrArgChange: true,
@@ -25,7 +24,7 @@ export default function Home() {
               data?.email ?  <div className='button_div'> 
               <button onClick={() => navigate('/teamsDashboard')} className='login_btn'>Continue</button>
           </div> : <div className='button_div'> 
-              <button onClick={() => navigate('/login', { state: 'admin'})} className='auth_btn'>Login</button>
+              <button onClick={() => navigate('/login')} className='auth_btn'>Login</button>
               <button onClick={() => {
                 navigate('/signup',{ state: 'admin' })
               }}  className='auth_btn'>Sign Up</button>

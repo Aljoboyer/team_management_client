@@ -50,6 +50,8 @@ export default function AddMember() {
           expireFromTime: ""
         }
         setSelectArr([...selectArr, newItem])
+        const searchFilter = searchResult?.filter((item2: any) => item2?._id !== item?._id)
+        setSearchResult(searchFilter)
       }
   }
 
@@ -123,7 +125,7 @@ export default function AddMember() {
           <p className="my-4 text-red-500 ms-12">{errors}</p>
             {
               searchResult?.map((item: any) => (
-                <div onClick={() => selectHandler(item)} className="flex flex-row justify-start items-center cursor-pointer bg-[#3267B1] w-1/2 ms-12 border rounded">
+                <div onClick={() => selectHandler(item)} className="flex flex-row justify-start items-center cursor-pointer bg-[#3267B1] w-96 ms-12 border rounded mt-4">
                   <img src={DP} height="60px" width="60px"/>
                   <div className="ms-4">
                     <p className="text-white">{item?.name}</p>
