@@ -3,10 +3,12 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Navicon from '../assets/navIcon.png'
 import { useGetUserQuery } from '../redux/features/authApi'
 import { useNavigate } from 'react-router-dom'
+import { useGetAllTeamsQuery } from '../redux/features/adminApi'
+import { useEffect, useState } from "react";
 
 const navigation = [
-    // { name: 'Dashboard', href: '/teamsDashboard', current: true },
-    { name: 'Availability', href: '/', current: false },
+    { name: 'Home', href: '/teamsDashboard', current: true },
+    { name: 'Availability', href: '3', current: false },
     { name: 'Integration', href: '#', current: false },
     { name: 'Community', href: '#', current: false },
   ]
@@ -18,7 +20,11 @@ export default function Navbars() {
   const navigate = useNavigate();
   const jsonData: any = localStorage.getItem('token')
   const token = jsonData ?  JSON.parse(jsonData) : 'jsdflkashhdlfkj'
+  const [invitationData, setInvitationData] = useState([]);
 
+  const { data: allTeam } = useGetAllTeamsQuery(token, {
+    refetchOnMountOrArgChange: true,
+  });
   const { data } = useGetUserQuery(token, {
     refetchOnMountOrArgChange: true,
   });
@@ -37,6 +43,14 @@ export default function Navbars() {
   const homeNavigation = () => {
 
   }
+
+  useEffect(() => {
+    if(data?.role == 'user' && allTeam && allTeam?.length > 0){
+        const filterData = allTeam?.filter((item: any) => item?.status == 'Pending')
+
+       setInvitationData(filterData)
+    }
+}, [data, data?.role, data?.length]);
   return (
     <Disclosure as="nav" className="bg-[#FFF9F9]">
     {({ open }) => (
@@ -95,13 +109,15 @@ export default function Navbars() {
                   >
                     <p className="text-white text-sm font-bold">Logout</p>
                   </button>
-                  <button
+                 {
+                  data?.role == 'user' &&  <button
                     type="button"
-                    className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-bg-gray-800"
+                    className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-bg-gray-800 border border-black mx-2"
                   >
-                    <span className="sr-only">View notifications</span>
+                    <span className="badge">{invitationData?.length}</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
+                 }
     
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-3">

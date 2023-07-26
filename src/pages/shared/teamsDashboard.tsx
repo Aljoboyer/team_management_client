@@ -4,11 +4,15 @@ import { useGetAllTeamsQuery } from "../../redux/features/adminApi";
 import { useGetUserQuery } from "../../redux/features/authApi";
 import moment from "moment";
 import { useStatusChangeMutation } from "../../redux/features/userApi";
+import { useEffect, useState } from "react";
+import Modals from "../../components/modals";
 
 export default function TeamsDashboard() {
     const jsonData: any = localStorage.getItem('token')
     const token =  JSON.parse(jsonData)
     const [statusChange, {  }] = useStatusChangeMutation();
+    const [modalShow, setModalShow] = useState(false)
+    const [invitationData, setInvitationData] = useState({});
 
     const { data } = useGetAllTeamsQuery(token, {
         refetchOnMountOrArgChange: true,
@@ -36,8 +40,28 @@ export default function TeamsDashboard() {
         const updateData = {id: item?._id, status: status}
         const statusChangeData = await statusChange(updateData)
         console.log('status change data', statusChangeData)
+        setModalShow(false)
     }
 
+    const ModalHandler = () => {
+        // e.preventDefault();
+        setModalShow(!modalShow)
+      };
+    
+    useEffect(() => {
+        if(userData?.role == 'user' && data && data?.length > 0){
+            const filterData = data?.filter((item: any) => item?.status == 'Pending')
+            const sortData = filterData?.sort((a: any, b: any) =>{
+                return  a.updatedAt > b.updatedAt ? -1 : 1
+            })
+            console.log('sortData', sortData)
+            if(sortData[0]?.status){
+                setInvitationData(sortData[0])
+                setModalShow(!modalShow)
+            }
+        }
+    }, [userData, userData?.role, data?.length]);
+    
     console.log('userData', userData)
     console.log('team', data)
 
@@ -102,6 +126,9 @@ export default function TeamsDashboard() {
 
     </div>
 
+        {
+            modalShow && <Modals statusChangeHandler={statusChangeHandler} invitationData={invitationData} modalShow={modalShow} ModalHandler={ModalHandler} />
+        }
 </div>
   )
 }
