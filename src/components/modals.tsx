@@ -1,5 +1,5 @@
 
-export default function Modals({ModalHandler, modalShow, invitationData, statusChangeHandler}: any): any {
+export default function Modals({ModalHandler,  invitationData, statusChangeHandler}: any): any {
   return (
     <div
     id="AccessModal"

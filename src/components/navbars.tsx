@@ -1,4 +1,4 @@
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Disclosure, Menu } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Navicon from '../assets/navIcon.png'
 import { useGetUserQuery } from '../redux/features/authApi'
@@ -39,9 +39,6 @@ export default function Navbars() {
       localStorage.clear();
       window.location.reload()
     }
-  }
-  const homeNavigation = () => {
-
   }
 
   useEffect(() => {

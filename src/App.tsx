@@ -1,4 +1,3 @@
-import Navbars from './components/navbars'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Notfound from './pages/notfound/notfound';
 import Login from './pages/auth/login';
