@@ -7,6 +7,8 @@ import Signup from './pages/auth/signup';
 import TeamDetailsDashboard from './pages/shared/teamDetailsDashboard';
 import TeamCreate from './pages/admin/teamCreate';
 import TeamsDashboard from './pages/shared/teamsDashboard';
+import AddMember from './pages/admin/addMember';
+import InvitationView from './pages/user/invitationView';
 
 //SASS
 import './styles/Home.css'
@@ -17,10 +19,6 @@ import './styles/Addmember.css'
 
 //sweet alert
 import 'sweetalert2/src/sweetalert2.scss'
-import AddMember from './pages/admin/addMember';
-import InvitationView from './pages/user/invitationView';
-import MainHome from './pages/shared/mainHome';
-
 
 
 function App() {
@@ -30,10 +28,8 @@ function App() {
       <Router>
 
         <Routes>
-        <Route path="/" element={<RootLayout><MainHome /></RootLayout>} />
-          <Route path="/adminView" element={<RootLayout><Home /></RootLayout>} />
-          <Route path="/adminView" element={<RootLayout><Home /></RootLayout>} />
-          <Route path="/userView" element={<RootLayout><Home /></RootLayout>} />
+          <Route path="/" element={<RootLayout><Home /></RootLayout>} />
+          {/* <Route path="/userView" element={<RootLayout><Home /></RootLayout>} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/teamDetailsDashboard/:id" element={<RootLayout><TeamDetailsDashboard /></RootLayout>} />

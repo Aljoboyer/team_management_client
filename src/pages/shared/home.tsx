@@ -25,9 +25,9 @@ export default function Home() {
               data?.email ?  <div className='button_div'> 
               <button onClick={() => navigate('/teamsDashboard')} className='login_btn'>Continue</button>
           </div> : <div className='button_div'> 
-              <button onClick={() => navigate('/login', { state: location?.pathname == '/adminView' ? 'admin' : 'user' })} className='auth_btn'>Login</button>
+              <button onClick={() => navigate('/login', { state: 'admin'})} className='auth_btn'>Login</button>
               <button onClick={() => {
-                navigate('/signup',{ state: location?.pathname == '/adminView' ? 'admin' : 'user' })
+                navigate('/signup',{ state: 'admin' })
               }}  className='auth_btn'>Sign Up</button>
           </div> 
             }
