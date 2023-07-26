@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInviteToTeamMutation, useGetAllUserQuery } from "../../redux/features/adminApi";
 import DP from '../../assets/dp.png'
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 export default function AddMember() {
@@ -13,7 +13,16 @@ export default function AddMember() {
   const [searchText, setSearchText] = useState('');
   const [errors, setErrors] = useState('')
   const params = useParams();
-  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const isToken = localStorage.getItem('token')
+    if(!isToken){
+      navigate('/')
+      return
+    }
+  },[])
+
   const SearchHandler = (searchText: string) => {
     setSearchText(searchText)
     if (searchText?.length >= 2) {

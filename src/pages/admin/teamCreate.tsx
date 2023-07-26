@@ -1,4 +1,4 @@
-import  { useState } from 'react'
+import  { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { useCreateTeamMutation } from '../../redux/features/adminApi';
 import { useGetUserQuery } from '../../redux/features/authApi';
@@ -17,6 +17,14 @@ export default function TeamCreate() {
     const { data } = useGetUserQuery(token, {
       refetchOnMountOrArgChange: true,
     });
+
+    useEffect(() => {
+      const isToken = localStorage.getItem('token')
+      if(!isToken){
+        navigate('/')
+        return
+      }
+    },[])
 
     const teamCreateHandler = async () => {
       if(!teamObj?.teamName){

@@ -19,6 +19,14 @@ export default function TeamDetailsDashboard() {
         refetchOnMountOrArgChange: true,
       });
 
+      useEffect(() => {
+        const isToken = localStorage.getItem('token')
+        if(!isToken){
+          navigate('/')
+          return
+        }
+      },[])
+      
     useEffect(() => {
         if(data?.length > 0){
             const filterData = data?.filter((item: any) => item?.status == 'Active')

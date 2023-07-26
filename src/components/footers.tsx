@@ -7,8 +7,8 @@ const Footers = () => {
 
         <div className="footer_div">
             <div className="mt-3">
-                <h1 className="text-gray-300 text-2xl font-bold">Our mission is to provide Knoladegeable and Entertaining Book to anyone, anywhere.</h1>
-                <h1 className="text-rose-700">Book Shoop is a Book Related Comapany!</h1>
+                <h1 className="text-gray-300 text-xl font-bold">Our mission is to provide strong team work and making connection to anyone, anywhere.</h1>
+                <h1 className="text-blue-500 text-3xl font-bold">Team Management System!</h1>
             </div>
             <div className="mt-3">
                 <li className="text-white">About</li>
@@ -33,7 +33,7 @@ const Footers = () => {
                 <li className="text-white">Android app</li>
             </div>
             <div className="mt-3">
-                <li className="text-white">About Online Book</li>
+                <li className="text-white">About Online Team</li>
                 <li className="text-white">Add Your Library</li>
                 <li className="text-white">Read Our Blog</li>
                 <li className="text-white">Find Writer</li>

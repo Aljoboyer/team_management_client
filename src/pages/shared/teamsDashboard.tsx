@@ -62,8 +62,13 @@ export default function TeamsDashboard() {
         }
     }, [userData, userData?.role, data?.length]);
     
-    console.log('userData', userData)
-    console.log('team', data)
+    useEffect(() => {
+        const isToken = localStorage.getItem('token')
+        if(!isToken){
+          navigate('/')
+          return
+        }
+      },[])
 
   return (
     <div className="team_details_container">
