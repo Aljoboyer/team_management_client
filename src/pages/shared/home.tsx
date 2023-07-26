@@ -7,7 +7,7 @@ export default function Home() {
   const jsonData: any = localStorage.getItem('token')
   const token = jsonData ?  JSON.parse(jsonData) : 'jsdflkashhdlfkj'
   const location = useLocation();
-
+  
   const { data } = useGetUserQuery(token, {
     refetchOnMountOrArgChange: true,
   });
@@ -25,7 +25,7 @@ export default function Home() {
               data?.email ?  <div className='button_div'> 
               <button onClick={() => navigate('/')} className='login_btn'>Continue</button>
           </div> : <div className='button_div'> 
-              <button onClick={() => navigate('/login')} className='auth_btn'>Login</button>
+              <button onClick={() => navigate('/login', { state: location?.pathname == '/adminView' ? 'admin' : 'user' })} className='auth_btn'>Login</button>
               <button onClick={() => {
                 navigate('/signup',{ state: location?.pathname == '/adminView' ? 'admin' : 'user' })
               }}  className='auth_btn'>Sign Up</button>

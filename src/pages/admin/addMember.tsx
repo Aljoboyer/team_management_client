@@ -5,13 +5,17 @@ import { useParams } from "react-router-dom";
 import Swal from 'sweetalert2'
 
 export default function AddMember() {
+  let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const { data } = useGetAllUserQuery(undefined);
   const [inviteToTeam, { }] = useInviteToTeamMutation();
   const [searchResult, setSearchResult] = useState([])
-  const [selectArr, setSelectArr]: any = useState([])
+  const [selectArr, setSelectArr]: any = useState([]);
+  const [searchText, setSearchText] = useState('');
+  const [errors, setErrors] = useState('')
   const params = useParams();
   
   const SearchHandler = (searchText: string) => {
+    setSearchText(searchText)
     if (searchText?.length >= 2) {
 
       const searchData = data?.filter((item: any) => {
@@ -57,6 +61,7 @@ export default function AddMember() {
   const OnChangeHandler = (e: any, teamMember: any) => {
     const fieldName = e.target.name;
     const fieldVal = e.target.value;
+
     selectArr?.map((item: any) =>{
       if(item?._id == teamMember?._id){
           item[fieldName] = fieldVal
@@ -79,6 +84,26 @@ export default function AddMember() {
     }
   }
 
+  const addHandler = () => {
+    if (emailRegex.test(searchText) === false || !searchText) {
+      setErrors('Please Enter a valid email')
+      return
+    }
+    else{
+      const findItem: any = selectArr?.find((user: any) => user?.email == searchText)
+      const newItem = {
+        email: findItem?.email,
+        name: findItem?.name,
+        teamDetails: params?.id,
+        teamUserTitle: "",
+        teamRole: "",
+        status: "Pending",
+        expireToTime: "",
+        expireFromTime: ""
+      }
+      setSelectArr([...selectArr, newItem])
+    }
+  }
   return (
     <div className='addMembder_container'>
         <div className="ms-12">
@@ -89,11 +114,13 @@ export default function AddMember() {
             <div className="input_div">
                 <input onChange={(e) => {
                   SearchHandler(e.target.value)
+                  setErrors('')
                 }} className='search_input' placeholder='Enter user email' />
             </div>
-            <button className='add_btn'>Add</button>
+            <button onClick={addHandler} className='add_btn'>Add</button>
         </div>
         <div className="search_result mt-4">
+          <p className="my-4 text-red-500 ms-12">{errors}</p>
             {
               searchResult?.map((item: any) => (
                 <div onClick={() => selectHandler(item)} className="flex flex-row justify-start items-center cursor-pointer bg-[#3267B1] w-1/2 ms-12 border rounded">

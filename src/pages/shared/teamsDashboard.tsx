@@ -3,26 +3,27 @@ import TeamBlack from '../../assets/teamBlack.png'
 import { useGetAllTeamsQuery } from "../../redux/features/adminApi";
 import { useGetUserQuery } from "../../redux/features/authApi";
 import moment from "moment";
+import { useStatusChangeMutation } from "../../redux/features/userApi";
 
 export default function TeamsDashboard() {
     const jsonData: any = localStorage.getItem('token')
     const token =  JSON.parse(jsonData)
+    const [statusChange, {  }] = useStatusChangeMutation();
 
     const { data } = useGetAllTeamsQuery(token, {
         refetchOnMountOrArgChange: true,
       });
-      const { data: userData } = useGetUserQuery(token, {
-        refetchOnMountOrArgChange: true,
-      });
+    const { data: userData } = useGetUserQuery(token, {
+    refetchOnMountOrArgChange: true,
+    });
     const navigate = useNavigate();
- console.log('userData', userData)
- console.log('team', data)
+
     
     const expireHourCalculation = (time1: any, time2: any) => {
         const startTime = moment(time1, 'HH:mm');
         const endTime = moment(time2, 'HH:mm');
 
-        const duration = moment.duration(endTime.diff(startTime));
+        const duration = moment.duration(startTime.diff(endTime));
 
        
         const totalHours = Math.floor(duration.asHours());
@@ -30,13 +31,22 @@ export default function TeamsDashboard() {
 
         return `${totalHours}hr : ${totalMinutes}min`
       }
+    
+    const statusChangeHandler = async (item: any, status: string) => {
+        const updateData = {id: item?._id, status: status}
+        const statusChangeData = await statusChange(updateData)
+        console.log('status change data', statusChangeData)
+    }
+
+    console.log('userData', userData)
+    console.log('team', data)
 
   return (
     <div className="team_details_container">
     <div className="team_details_header">
         <div>
             <p className="team_details_header_text">{userData?.role == 'admin' ? 'Admin Dashboard' : userData?.role == 'user' ? `Hi ${userData?.name} !` : ''}</p>
-            <h4 className="team_details_header_title">{userData?.role == 'admin' ? 'Team Creation management system' :  userData?.role == 'user' ?  'Your Team Invitation List' : ''}</h4>
+            <h4 className="team_details_header_title">{userData?.role == 'admin' ? 'Team Creation management system' :  userData?.role == 'user' ?  'Your Team List' : ''}</h4>
         </div>
 
     </div>
@@ -70,12 +80,18 @@ export default function TeamsDashboard() {
                 </div>
                 
                 {
-                    userData?.role == 'user' &&    
+                    userData?.role == 'user' && item?.status == 'Pending' &&    
                <div className="flex flex-row justify-cneter items-center">
                     <p className="  mr-4">Ends in {expireHourCalculation(item?.expireFromTime, item?.expireToTime)}</p>
                  <div className="action_btn_div">
-                    <button className="reject">Reject</button>
-                    <button className="accept">Accept</button>
+                    <button  onClick={(e) => {
+                          e.stopPropagation();
+                        statusChangeHandler(item, 'Reject')
+                    }} className="reject">Reject</button>
+                    <button onClick={(e) => {
+                        e.stopPropagation();
+                        statusChangeHandler(item, 'Active')
+                        }} className="accept">Accept</button>
                 </div>
                 </div>
                 }

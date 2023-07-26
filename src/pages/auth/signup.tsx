@@ -81,7 +81,7 @@ export default function Signup() {
             <p className='text-red-500 mt-4'>{errors?.passwordErr}</p>
         </div>
         <p className='text-red-500 mt-4'>{errors?.apiError}</p>
-              <p className='text-gray-600 mt-4'>Already have an account? <span onClick={() => navigate('/login')} className='text-gray-300 hover:text-blue-500 cursor-pointer'>Login</span></p>
+              <p className='text-gray-600 mt-4'>Already have an account? <span onClick={() => navigate('/login', {state: location?.state})} className='text-gray-300 hover:text-blue-500 cursor-pointer'>Login</span></p>
               {
                 loader ?  <button className="login_btn">Loading...</button> :  <button  onClick={() => signUpHandler()} className="login_btn">Sign Up</button>
               }

@@ -51,7 +51,7 @@
         .active_btn{
             margin-top: 5px;
             margin-right: 10px;
-            @include ButtonMixins(60px, 184px, 20px, 500, white, $Hiligths, 10px);
+            @include ButtonMixins(60px, 190px, 20px, 500, white, $Hiligths, 10px);
             border: solid 1px #4C54F8;
             font-weight: bold;
         }
