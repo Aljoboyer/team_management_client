@@ -19,6 +19,7 @@ import './styles/Addmember.css'
 import 'sweetalert2/src/sweetalert2.scss'
 import AddMember from './pages/admin/addMember';
 import InvitationView from './pages/user/invitationView';
+import MainHome from './pages/shared/mainHome';
 
 
 
@@ -29,6 +30,8 @@ function App() {
       <Router>
 
         <Routes>
+        <Route path="/" element={<RootLayout><MainHome /></RootLayout>} />
+          <Route path="/adminView" element={<RootLayout><Home /></RootLayout>} />
           <Route path="/adminView" element={<RootLayout><Home /></RootLayout>} />
           <Route path="/userView" element={<RootLayout><Home /></RootLayout>} />
           <Route path="/login" element={<Login />} />
