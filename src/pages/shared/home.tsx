@@ -1,12 +1,12 @@
 import AppIcon from '../../assets/app_icon.png';
-import { useLocation, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { useGetUserQuery } from '../../redux/features/authApi';
 
 export default function Home() {
   const navigate = useNavigate();
   const jsonData: any = localStorage.getItem('token')
   const token = jsonData ?  JSON.parse(jsonData) : 'jsdflkashhdlfkj'
-  const location = useLocation();
+  // const location = useLocation();
   
   const { data } = useGetUserQuery(token, {
     refetchOnMountOrArgChange: true,
